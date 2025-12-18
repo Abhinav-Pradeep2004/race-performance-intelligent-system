@@ -1,16 +1,13 @@
 # creating the path for module errors
-import sys
-from pathlib import Path
-
-PROJECT_ROOT = Path().resolve().parent  # go up one level
-sys.path.append(str(PROJECT_ROOT))
-
+import os
 import fastf1
-from fastf1 import plotting
 
-fastf1.Cache.enable_cache(r"F:\race-performance-intelligent-system\data\cache")
+# Use a relative cache directory inside your project
+cache_dir = os.path.join(os.path.dirname(__file__), "..", "data", "cache")
+os.makedirs(cache_dir, exist_ok=True)
 
-# Download the data and cache data
+fastf1.Cache.enable_cache("/tmp/f1cache")
+
 """
     Loads an F1 race session using FastF1.
     session_type: "R" = Race, "Q" = Qualifying, "FP1", "FP2", "FP3"
